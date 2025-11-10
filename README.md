@@ -1,4 +1,4 @@
-# 🎮 <OOP FINAL PROJECT> 
+## 🎮 <OOP FINAL PROJECT> 
 # 강의실 스텔스 미니게임 with pygame: 교수님 몰래 @@하기 
 수업 시간, 교수님의 시선을 피해 몰래 행동해 보세요!
 손끝의 재치와 순발력이 점수를 결정합니다.
