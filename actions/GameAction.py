@@ -30,7 +30,7 @@ class GameAction(SecretAction):
         self.elapsed += dt
         
         while self.elapsed >= self.time_per_hit:
-            self.elapsed -= self.time_per_hit 
+            self.elapsed -= self.time_per_hit  
             self.success_hits += 1
         self.progress = self.success_hits / self.required_hits
 
