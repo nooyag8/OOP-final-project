@@ -3,6 +3,7 @@ import os
 import sys
 
 from SimpleButton import SimpleButton
+from entities.Student import Student
 
 # 경로 설정
 BASE_DIR = os.path.dirname(__file__)          # OOP-final-project 폴더
@@ -17,6 +18,9 @@ STARTBUTTON_CLK_PATH = os.path.join(BASE_DIR, 'images', 'gamestartClick.png')
 def main():
     pygame.init()
     clock = pygame.time.Clock()
+    screen = pygame.display.set_mode((800, 600))
+    width, height = screen.get_size()
+    student = Student(width, height)
 
     # 이미지 로드
     background_img = pygame.image.load(BACKGROUND_PATH)
@@ -44,7 +48,9 @@ def main():
     
     running = True
     game_state = "TITLE"
-
+    
+    font = pygame.font.SysFont(None, 50)
+    
     while running:
         clock.tick(60)  
 
@@ -65,9 +71,25 @@ def main():
             screen.blit(background_img, (0, 0))
             screen.blit(title_img, (220, -10))
             startbutton.draw()
+            
         elif game_state == "PLAY":
+            dt= clock.get_time()/ 1000.0
+            keys= pygame.key.get_pressed()
+                
+            student.update(dt, keys)
             screen.blit(background_img, (0,0))
-            # 게임 로직...
+            student.draw(screen)
+            
+            mission_name = student.get_mission_name()
+            
+            if mission_name:
+                mission_text = f"STAGE MISSION: {mission_name.replace('Action', '').upper()}"
+                text_surface = font.render(mission_text, True, (255, 0, 0)) 
+                screen.blit(text_surface, (50, 50))
+            else:
+                clear_text = font.render("ALL MISSION CLEAR!", True, (0, 255, 0))
+                screen.blit(clear_text, (250, 300))
+            
 
         pygame.display.flip()
 
