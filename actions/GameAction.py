@@ -14,4 +14,5 @@ class GameAction(SecretAction):
     def execute(self, dt, ctx):
         if not self.is_active or not ctx.get('game_pressed', False):
             return
+        
         super().execute(dt, ctx)
