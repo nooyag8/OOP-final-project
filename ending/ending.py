@@ -75,7 +75,6 @@ class Ending:
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
-                    running = False
                     return "quit"
 
                 # mission_fail일 때만 버튼 동작
@@ -84,6 +83,16 @@ class Ending:
                     if clicked:
                         print("다시하기 클릭됨!")
                         return "retry"
+                    
+                elif self.type == "mission_success":
+                    if (event.type == pygame.KEYDOWN or
+                    (event.type == pygame.MOUSEBUTTONUP and event.button == 1)):
+                        return "continue"
+                    
+                elif self.type == "class_end":
+                    if (event.type == pygame.KEYDOWN or
+                        (event.type == pygame.MOUSEBUTTONUP and event.button == 1)):
+                        return "quit"
 
             pygame.display.flip()
             clock.tick(60)
